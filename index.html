@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>Daniel y Valeria · Boda Hacienda Mexicana</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="scroll-progress" id="progressBar"></div>
+
+<!-- PANTALLA DE ACCESO -->
+<div id="access-screen">
+  <img class="access-bg" src="https://images.unsplash.com/photo-1603884068379-0f622eaaafc5?q=80&w=2070&auto=format" alt="hacienda mexicana">
+  <div class="access-overlay"></div>
+  <div class="glass-card">
+    <h2>Bienvenidos</h2>
+    <p>INVITACIÓN PRIVADA</p>
+    <input type="text" id="accessCode" class="code-input" maxlength="4" placeholder="****" autocomplete="off">
+    <button id="submitAccess" class="btn-premium">Ingresar al momento</button>
+    <div id="errorAccess" class="error-msg" style="display: none;">Código incorrecto · Acceso exclusivo</div>
+  </div>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main id="main-content" style="display: none;">
+  <!-- HERO SWIPER CINEMATOGRÁFICO -->
+  <div class="swiper hero-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('assets/images/1.png'); background-size: cover;"></div>
+      <div class="swiper-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('assets/images/2.jpeg'); background-size: cover;"></div>
+      <div class="swiper-slide" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('assets/images/3.jpeg'); background-size: cover;"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-bienvenida" id="dynamicWelcome">Bienvenida Familia</div>
+      <div class="hero-bienvenida mt-2" id="dynamicPases" style="font-size: 0.7rem; background:rgba(0,0,0,0.4)">Válido para 0 personas</div>
+      <div class="hero-names">Ivonne Cortes & Ismael Britos</div>
+      <div class="hero-date">3 de Octubre, 2026 · Jardin Social Loma Linda | Metepec MX · 2:00 PM</div>
+      
+      <!-- CONTADOR REGRESIVO PREMIUM -->
+      <div class="countdown-container">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">00</span>
+          <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Minutos</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Segundos</span>
+        </div>
+      </div>
+      
+      <button id="scrollToRSVP" class="btn-premium" style="width: auto; margin-top: 0.5rem; padding: 0.7rem 2rem;">Confirmar asistencia</button>
+    </div>
+  </div>
+
+  <!-- SALUDO DE LOS NOVIOS -->
+  <section>
+    <div class="container saludo-grid">
+      <div class="saludo-img">
+        <img src="assets/images/4.jpeg" alt="pareja novios elegante">
+      </div>
+      <div class="saludo-texto">
+        <h3 class="section-title" style="text-align: left; margin-bottom: 1rem;">Quedate con quien te inspira a ser mejor persona y saque la mejor version de ti. Mi complemento, mi norte.
+            Deseamos celebrar el amor y la unión con la bendición de Dios, por eso nos complace que nos acompañen a vivir el inicio de este nuevo viaje...</p>
+        <p style="margin-top: 1rem;">—Ivonne & Ismael</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMA BODA -->
+  <section style="background: #faf5eb;">
+    <div class="container">
+      <h3 class="section-title">Programa de la celebración</h3>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-hour">5:00 PM</div><div class="timeline-icon"><i class="fas fa-ring"></i></div><div class="timeline-title">Ceremonia Religiosa</div></div>
+        <div class="timeline-item"><div class="timeline-hour">7:00 PM</div><div class="timeline-icon"><i class="fas fa-wine-glass-alt"></i></div><div class="timeline-title">Recepción & Cóctel</div></div>
+        <div class="timeline-item"><div class="timeline-hour">8:00 PM</div><div class="timeline-icon"><i class="fas fa-utensils"></i></div><div class="timeline-title">Cena de tres tiempos</div></div>
+        <div class="timeline-item"><div class="timeline-hour">9:30 PM</div><div class="timeline-icon"><i class="fas fa-guitar"></i></div><div class="timeline-title">Mariachi Elegante</div></div>
+        <div class="timeline-item"><div class="timeline-hour">10:00 PM</div><div class="timeline-icon"><i class="fas fa-dove"></i></div><div class="timeline-title">Fiesta & Hora loca premium</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section>
+    <div class="container">
+      <h3 class="section-title">Código de Vestimenta</h3>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto;">Formal Mexicano Elegante · Toques artesanales, colores tierra y sofisticación.</p>
+      <div class="dress-grid">
+        <div class="color-chip" style="background: #7c3f3f;"></div>
+        <div class="color-chip" style="background: #7a8266;"></div>
+        <div class="color-chip" style="background: #e1d4bf;"></div>
+        <div class="color-chip" style="background: #1e1c19;"></div>
+        <div class="color-chip" style="background: #c9a87c;"></div>
+        <div class="color-chip" style="background: #c27e5c;"></div>
+      </div>
+      <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem;">Traje de etiqueta, vestido largo, accesorios en tonos vino, oliva o champagne.</p>
+    </div>
+  </section>
+
+  <!-- RSVP FORM -->
+  <section id="rsvp-section" style="background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800') center/cover fixed; position: relative;">
+    <div style="background: rgba(251,247,240,0.85); padding: 3rem 1rem;">
+      <div class="container">
+        <h3 class="section-title">Confirmación de Asistencia</h3>
+        <div class="rsvp-glass">
+          <form id="rsvpForm">
+            <div class="form-group"><label>Familia / Invitado</label><input type="text" id="familiaName" readonly></div>
+            <div class="form-group"><label>Pases permitidos</label><input type="text" id="maxPases" readonly></div>
+            <div class="form-group"><label>¿Asistirás?</label><select id="asistenciaSelect"><option value="">-- Selecciona --</option><option value="si">Sí, asistiré con gusto</option><option value="no">No podré asistir</option></select></div>
+            <div class="form-group"><label>Número real de asistentes (máx. permitido)</label><input type="number" id="asistentesNum" min="0" value="0"></div>
+            <div class="form-group"><label>Comentarios / Restricciones</label><textarea id="comentarios" rows="2" placeholder="Alergias, alguna canción especial..."></textarea></div>
+            <button type="submit" class="btn-premium" style="width: 100%;">Enviar Confirmación <i class="fas fa-check-circle"></i></button>
+            <div id="rsvpFeedback" style="margin-top: 1rem; text-align: center; font-size: 0.8rem;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA UBICACIÓN -->
+  <section>
+    <div class="container">
+      <h3 class="section-title">Lugar · Loma Linda Jardin Social</h3>
+      <div class="map-wrapper" id="mapContainer"></div>
+      <p style="text-align: center; margin-top: 1rem;">Manzana 002, 52160 Metepec, Méx.</p>
+      <div style="text-align: center; margin-top: 1rem;"><a href="https://maps.app.goo.gl/tL3uQDssPUJ1fhdy8" target="_blank" class="btn-premium" style="display: inline-block; width: auto; padding: 0.6rem 1.8rem;">Cómo llegar <i class="fas fa-map-marker-alt"></i></a></div>
+    </div>
+  </section>
+
+  <footer class="footer-premium">
+  <p>Diseñado artesanalmente con <i class="fas fa-heart" style="color: #c27e5c;"></i> por JD Creativo · Pao Studio</p>
+  
+  <!-- Nueva línea con llamado a cotización -->
+  <div class="cotiza-link">
+    <a href="https://paostudio.netlify.app/" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-briefcase"></i> Cotiza tu invitación Digital o diseño!!
+    </a>
+  </div>
+
+  <div class="social-icons">
+    <a href="https://www.instagram.com/jdcreativo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://es.pinterest.com/jdcreativo/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+      <i class="fab fa-pinterest"></i>
+    </a>
+    <a href="https://bio.link/homick " target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+      <i class="fab fa-spotify"></i>
+    </a>
+  </div>
+</footer>
+</main>
+
+<div id="musicControl" class="music-btn"><i class="fas fa-music"></i> <span></span></div>
+<audio id="bgMusic" loop preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" muted></audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
