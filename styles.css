@@ -501,3 +501,102 @@ input[readonly] {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
+
+/* ===== SECCIÓN REGALOS ===== */
+.section-regalos {
+  background: linear-gradient(135deg, #faf5eb 0%, #f2e8da 100%);
+  padding: 4rem 1.5rem;
+  position: relative;
+}
+
+.regalos-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.regalos-icon-wrapper {
+  display: inline-block;
+  background: rgba(201, 168, 124, 0.12);
+  border-radius: 100px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(201, 168, 124, 0.25);
+}
+
+.regalos-icon {
+  font-size: 2.8rem;
+  color: var(--gold-warm);
+  display: block;
+  line-height: 1;
+}
+
+.regalos-mensaje {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: #2c2824;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.regalos-firma {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  color: var(--coffee-soft);
+  margin-bottom: 0.5rem;
+}
+
+/* Tarjeta de transferencia */
+.transferencia-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: 28px;
+  padding: 1.8rem 2rem;
+  border: 1px solid rgba(201, 168, 124, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem 1.5rem;
+  text-align: left;
+}
+
+.transferencia-item {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: var(--black-elegant);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.transferencia-item i {
+  color: var(--gold-warm);
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Responsive para tarjeta */
+@media (max-width: 550px) {
+  .transferencia-card {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 1.2rem;
+  }
+  .transferencia-item {
+    font-size: 0.85rem;
+  }
+  .regalos-mensaje {
+    font-size: 1.2rem;
+  }
+  .regalos-firma {
+    font-size: 1.5rem;
+  }
+  .regalos-icon {
+    font-size: 2.2rem;
+  }
+}
