@@ -123,7 +123,7 @@ function handleAccess() {
 
 function updateUIConGuest() {
   if (currentGuest) {
-    dynamicWelcomeSpan.innerText = `Bienvenida ${currentGuest.familia}`;
+    dynamicWelcomeSpan.innerText = `Familia ${currentGuest.familia}`;
     dynamicPasesSpan.innerText = `Esta invitación es válida para ${currentGuest.pases} personas`;
     familiaInput.value = currentGuest.familia;
     maxPasesInput.value = currentGuest.pases;
