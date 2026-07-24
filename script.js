@@ -233,7 +233,7 @@ if (musicBtn) {
     } else {
       bgAudio.muted = false;
       bgAudio.play().catch(e => console.log("Autoplay restringido"));
-      musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>♫ Ambient</span>';
+      musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>Tu y Yo</span>';
     }
     musicEnabled = !musicEnabled;
   });
