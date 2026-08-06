@@ -3,7 +3,7 @@
 // ============================================================
 
 // --- Sheet.best (Google Sheets) ---
-const SHEETBEST_URL = 'https://script.google.com/macros/s/AKfycbxOGfzjEdfSqJFx3jQP3ZvJXI8ZT117v8JYurtVOH2cFzPeP4XrArZbpEOwN3q4c2msmQ/exec'; // Tu URL
+const SHEETBEST_URL = 'https://script.google.com/macros/s/AKfycbySXQR3S-YPTPvcp2J2afFM2ylZ1j7n34WpDC-ulpyUJFRYnps2hYhUcGERPQRxv4c_Fw/exec'; // Tu URL
 
 // --- WhatsApp del organizador ---
 const WHATSAPP_NUMBER = '5215634071484'; // Formato: código país + número (sin +, sin espacios)
@@ -271,25 +271,24 @@ rsvpForm.addEventListener('submit', async (e) => {
 
   const comentarios = document.getElementById('comentarios').value;
 
-  // 1. Preparar datos para Sheet.best
-  const data = {
-    Familia: currentGuest.familia,
-    Pases: currentGuest.pases,
-    Asistencia: asistencia === 'si' ? 'Sí' : 'No',
-    Asistentes: asistentes,
-    Comentarios: comentarios,
-    Fecha: new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' })
-  };
+  // 1. Preparar datos como x-www-form-urlencoded (evita preflight CORS)
+  const formData = new URLSearchParams();
+  formData.append('Familia', currentGuest.familia);
+  formData.append('Pases', currentGuest.pases);
+  formData.append('Asistencia', asistencia === 'si' ? 'Sí' : 'No');
+  formData.append('Asistentes', asistentes);
+  formData.append('Comentarios', comentarios);
+  formData.append('Fecha', new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' }));
 
   try {
-    // 2. Enviar a Google Sheets via Sheet.best
+    // 2. Enviar a Google Apps Script (sin JSON)
     const response = await fetch(SHEETBEST_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
     });
 
-    if (!response.ok) throw new Error('Error al guardar en la hoja');
+    if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
 
     // 3. Mostrar mensaje de éxito
     rsvpFeedback.innerHTML = '<span style="color:#7a8266;">✨ Confirmación enviada con éxito. ¡Gracias por formar parte de este día!</span>';
@@ -298,12 +297,12 @@ rsvpForm.addEventListener('submit', async (e) => {
     // 4. Enviar notificación por WhatsApp
     const mensajeWhatsApp = `
     *Notificación de Asistencia!!* 🎉🎊
-    *Familia:* ${data.Familia}
-    *Pases:* ${data.Pases}
-    *Asistencia:* ${data.Asistencia}
-    *Asistentes:* ${data.Asistentes}
-    *Comentarios:* ${data.Comentarios}
-    *Fecha:* ${data.Fecha}
+    *Familia:* ${currentGuest.familia}
+    *Pases:* ${currentGuest.pases}
+    *Asistencia:* ${asistencia === 'si' ? 'Sí' : 'No'}
+    *Asistentes:* ${asistentes}
+    *Comentarios:* ${comentarios}
+    *Fecha:* ${new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' })}
     `.trim();
 
     const urlWhatsApp = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensajeWhatsApp)}`;
