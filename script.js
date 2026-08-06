@@ -3,7 +3,7 @@
 // ============================================================
 
 // --- Sheet.best (Google Sheets) ---
-const SHEETBEST_URL = 'https://api.sheetbest.com/sheets/e051d1c5-b766-48c0-bace-713b5b13ea2c'; // Tu URL
+const SHEETBEST_URL = 'https://script.google.com/macros/s/AKfycbxzaM6O_WRSmDGlsah5bMP7J1k_DbBXPxtVobZIp5ewL0dvR62XPk9iahP0XfDU2kHbSA/exec'; // Tu URL
 
 // --- WhatsApp del organizador ---
 const WHATSAPP_NUMBER = '5215634071484'; // Formato: código país + número (sin +, sin espacios)
